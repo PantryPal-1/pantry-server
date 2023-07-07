@@ -1,5 +1,5 @@
 """API"""
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import pandas as pd
 
 app = Flask(__name__)
@@ -16,7 +16,11 @@ def rec_recipe():
     only_ingr = request.args.get("onlyi", type=bool)
     ingredients_input = request.json["ingredients"]
     if only_ingr:
-        df = pd.read_csv("input/df_parsed.csv")
-        pattern = "(?:" + " ".join([f"(?i){i}" for i in ingredients_input])
+        df = pd.read_csv("input/recipes.csv")
+        pattern = "(?:" + " ".join([f"(?i){i}" for i in ingredients_input]) + ")"
+        res = df[df["ingredients"].str.contains(pattern)]
+    else:
+        df = pd.read_csv("input/recipes.csv")
+        pattern = "|".join([f"(?i){i}" for i in ingredients_input])
         res = df[df["ingredients"].str.contains(pattern)]
     return res.to_json(), 200
