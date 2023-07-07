@@ -19,7 +19,7 @@ def rec_recipe():
     # ingredients = ingredients["ingredients"]
     if only_ingr:
         df = pd.read_csv("input/df_parsed.csv")
-        pattern = "|".join([f"(?i){i}" for i in ingredients_input])
+        pattern = "(?:" + " ".join([f"(?i){i}" for i in ingredients_input])
         print(type(df["ingredients_parsed"].str.lower()))
         # print(df[df["ingredients"].str.contains(pattern)])
         res = df[df["ingredients"].str.contains(pattern)]
