@@ -16,6 +16,9 @@ def rec_recipe():
     res = []
     only_ingr = request.args.get("onlyi", type=bool)
     use_rec = request.args.get("use_rec", type=bool)
+    n_recs = request.args.get("n", type=int)
+    if not n_recs:  # set default
+        n_recs = 10
     ingredients_input = request.json["ingredients"]
     if only_ingr:
         df = pd.read_csv("input/recipes.csv")
@@ -30,7 +33,8 @@ def rec_recipe():
         )
         pipeline = pickle.load(open("input/pipeline.pkl", "rb"))
         input = pipeline.transform(input_df)
-        output = cosine_rec.predict(input, 10)
+        output = cosine_rec.predict(input, n_recs)
+        print(n_recs, flush=True)
         res = output
     else:
         df = pd.read_csv("input/recipes.csv")
