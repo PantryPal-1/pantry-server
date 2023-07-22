@@ -14,6 +14,7 @@ run server using ```flask run```
 > | `only_i`      |  optional | bool   | recipes only contain inputed ingredients |
 > | `use_rec`      |  optional | bool   | uses recommendation algorithm to recommend relavant recipes |
 > | `is_veg`      |  optional | bool   | uses recommendation algorithm but with only vegetarian options, requires use_rec=true |
+> | `is_nut_free`      |  optional | bool   | uses recommendation algorithm but with only nut-free options, requires use_rec=true |
 > | `n`      |  optional | int   | defines number of recipe recommendations, default n=10  |
 
 
