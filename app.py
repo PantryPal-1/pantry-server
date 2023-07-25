@@ -34,9 +34,10 @@ def rec_recipe():
             pipeline = pickle.load(open("input/veg_pipeline.pkl", "rb"))
             input = pipeline.transform(input_df)
             output = cosine_rec.predict(input, n_recs)
+            print("test", flush=True)
             print(n_recs, flush=True)
             res = output
-        if is_nut_free:
+        elif is_nut_free:
             cosine_rec = pickle.load(open("input/nut_free_rec.pkl", "rb"))
             input_df = pd.DataFrame(
                 list(zip([i_list_str], [i_list_str])),
