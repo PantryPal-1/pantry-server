@@ -1,5 +1,7 @@
 # pantry-server
 
+install dependencies with ```pip install -r requirements.txt```
+
 run server using ```flask run```
 
 #### Getting recommendations
